@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Soma</title>
+  </head>
+  <body>
+    <h1>Calcular</h1>
+
+    <input id="v1" type="number" placeholder="v1"> </br>
+    <input id="v2" type="number" placeholder="v2"> </br>
+    <button id="calcular" > Calcular </button>
+    <div class="result"></div>
+
+    <script>
+      function soma(v1, v2) {
+        const resultado = v1 + v2;
+        return resultado;
+      }
+
+      const calcular = document.getElementById("calcular");
+      calcular.onclick = function () {
+        async function loadCalculo() {
+          const res = await fetch("/operation");
+          const operation = await res.json();
+          let operationView = "";
+
+          for (const soma of operation) {
+            operationView += `<p> Resultado = 
+          ${soma(soma.resultado)} </p>`;
+          }
+
+          document.querySelector("div").innerHTML = operationView;
+        }
+        loadCalculo();
+      };
+    </script>
+  </body>
+</html>

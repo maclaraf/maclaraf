@@ -1,0 +1,27 @@
+{% extends "layout.njk" %}
+
+{% set title = "Soma" %}
+
+{% block content %}
+<h1>Calcular</h1>
+
+  <input id="v1" type="number" placeholder="v1"> </br>
+  <input id="v2" type="number" placeholder="v2"> </br>
+  <button id="soma" > Calcular </button>
+
+  <div class="result">
+  {% for soma of operation %}
+  <p> Resultado = {{ soma.resultado }} </p>
+  {% endfor %}
+  </div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+  function soma(v1, v2) {
+    const resultado = v1 + v2;
+    return resultado;
+  }
+</script>
+{% endblock %}
